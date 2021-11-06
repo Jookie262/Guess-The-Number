@@ -1,13 +1,16 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
+import java.util.InputMismatchException;
 
 public class Play extends JPanel {
 
     // Declaring the Game class for changing the scene
     final private Game game;
+
+    // Create an instance of RandomNumber class to generate a random number
+    RandomNumber randomNumber = new RandomNumber();
 
     public Play(Game game){
         this.game = game;
@@ -27,6 +30,7 @@ public class Play extends JPanel {
         JLabel playScore, gameText, minMaxImage , mysteryNumber, statusImage, enterButton, continueButton, backButton;
         JTextField inputText;
         JPanel gridPanel;
+        int random = randomNumber.generateNumber(); // generates a random number
 
         // Setting up and Display the Score in the Current Game
         playScore = new JLabel("Score: 0");
@@ -97,6 +101,22 @@ public class Play extends JPanel {
         backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         linkMenu(backButton);
         add(backButton);
+
+        // When user click the enter button
+        enterButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                changeStatus(inputText, mysteryNumber, random, statusImage, gridPanel, continueButton);
+            }
+        });
+
+        // When user hits the button key while inputting in text field
+        inputText.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeStatus(inputText, mysteryNumber, random, statusImage, gridPanel, continueButton);
+            }
+        });
     }
 
     // Method for Linking to Play Section
@@ -115,4 +135,41 @@ public class Play extends JPanel {
         g.drawImage(new ImageIcon("res/background.jpg").getImage(), 0, 0, null);
     }
 
+    // Method for Changing the Status Image
+    private void changeStatus(JTextField input, JLabel mysterynum, int randnum, JLabel status, JPanel gridPanel, JLabel contButton){
+        // If the random number and the user input is correct
+        if (String.valueOf(randnum).equals(input.getText())) {
+            // Change the image of status
+            status.setIcon(new ImageIcon("res/correct.png"));
+            // Change the value of ? to the number
+            mysterynum.setText(input.getText());
+            // Hide the Panel with the enter button and text field
+            gridPanel.setVisible(false);
+            // Set and Show the continue button (for playing again)
+            contButton.setVisible(true);
+            contButton.setBorder(new EmptyBorder(-10,0,0,0));
+        } else {
+            // Catch any possible error if the user didn't input a number
+            try {
+                // Convert the user input number (string) to int
+                int textToInt = Integer.parseInt(input.getText());
+                // Comparing the user input to the random number
+                if(textToInt > 50 || textToInt < 1) {
+                    // If the user input higher than 50 and lower than 1, executed this block of code
+                    status.setIcon(new ImageIcon("res/out_of_range.png"));
+                } else if (textToInt > randnum ){
+                    // If the user input higher than random number, executed this block of code
+                    status.setIcon(new ImageIcon("res/too_high.png"));
+                } else if(textToInt < randnum){
+                    // If the user input lower than random number, executed this block of code
+                    status.setIcon(new ImageIcon("res/too_low.png"));
+                }
+            } catch (NumberFormatException ex) {
+                // Is user input anything aside from numbers, executed this block of code
+                status.setIcon(new ImageIcon("res/invalid_input.png"));
+            }
+        }
+        // Remove the Text in text field once the user call this method
+        input.setText("");
+    }
 }
