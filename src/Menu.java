@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Menu extends JPanel {
 
@@ -50,6 +52,7 @@ public class Menu extends JPanel {
         playButton.setBorder(new EmptyBorder(30, 0, 0, 0));
         playButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         playButton.setAlignmentX(CENTER_ALIGNMENT);
+        linkPlay(playButton);
         add(playButton);
 
         // Setting up and Display the "Click to Play" Text Image
@@ -57,6 +60,16 @@ public class Menu extends JPanel {
         playText.setBorder(new EmptyBorder(20,0,0,0));
         playText.setAlignmentX(CENTER_ALIGNMENT);
         add(playText);
+    }
+
+    // Method for Linking to Play Section
+    public void linkPlay(JLabel jLabel){
+        jLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                game.showView(new Play(game));
+            }
+        });
     }
 
     // For changing the background of JPanel

@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Play extends JPanel {
 
@@ -93,7 +95,18 @@ public class Play extends JPanel {
         backButton = new JLabel(new ImageIcon("res/back_to_menu_button.png"));
         backButton.setAlignmentX(CENTER_ALIGNMENT);
         backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        linkMenu(backButton);
         add(backButton);
+    }
+
+    // Method for Linking to Play Section
+    public void linkMenu(JLabel jLabel){
+        jLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                game.showView(new Menu(game));
+            }
+        });
     }
 
     // For changing the background of JPanel
