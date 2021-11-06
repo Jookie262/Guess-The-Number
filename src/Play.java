@@ -125,7 +125,10 @@ public class Play extends JPanel {
         jLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                game.showView(new Menu(game));
+                int dialogResult = JOptionPane.showConfirmDialog(null, "Want to Stop the Game?", "Are you Sure", JOptionPane.YES_NO_OPTION);
+                if(dialogResult == 0) {
+                    game.showView(new Menu(game));
+                }
             }
         });
     }
