@@ -93,6 +93,7 @@ public class Play extends JPanel {
         continueButton.setAlignmentX(CENTER_ALIGNMENT);
         continueButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         continueButton.setVisible(false);
+        continueGame(continueButton);
         add(continueButton);
 
         // Setting up and Display the Back to Menu Button
@@ -125,6 +126,16 @@ public class Play extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 game.showView(new Menu(game));
+            }
+        });
+    }
+
+    // Method to continue a game
+    public void continueGame(JLabel jLabel){
+        jLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                game.showView(new Play(game));
             }
         });
     }
