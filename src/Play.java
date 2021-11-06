@@ -12,6 +12,8 @@ public class Play extends JPanel {
     // Create an instance of RandomNumber class to generate a random number
     RandomNumber randomNumber = new RandomNumber();
 
+    ScoringSystem scoringSystem = new ScoringSystem();
+
     public Play(Game game){
         this.game = game;
 
@@ -31,7 +33,7 @@ public class Play extends JPanel {
         JTextField inputText;
         JPanel gridPanel;
         int random = randomNumber.generateNumber(); // generates a random number
-
+        System.out.println(random);
         // Setting up and Display the Score in the Current Game
         playScore = new JLabel("Score: 0");
         playScore.setFont(new Font("Arial", Font.BOLD, 20));
@@ -162,6 +164,8 @@ public class Play extends JPanel {
             // Set and Show the continue button (for playing again)
             contButton.setVisible(true);
             contButton.setBorder(new EmptyBorder(-10,0,0,0));
+            // Get the points(based on number of attempts) and update the score
+            scoringSystem.scoreAttempt();
         } else {
             // Catch any possible error if the user didn't input a number
             try {
@@ -185,5 +189,7 @@ public class Play extends JPanel {
         }
         // Remove the Text in text field once the user call this method
         input.setText("");
+        // Increase the number of attempts
+        scoringSystem.incrementAttempt();
     }
 }
