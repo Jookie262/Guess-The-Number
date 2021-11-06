@@ -12,7 +12,11 @@ public class Play extends JPanel {
     // Create an instance of RandomNumber class to generate a random number
     RandomNumber randomNumber = new RandomNumber();
 
+    // Create an instance of ScoringSystem class for making points and attempts
     ScoringSystem scoringSystem = new ScoringSystem();
+
+    // Create an instance of ScoreFiles class to handle the .txt Files
+    ScoreFiles scoreFiles = new ScoreFiles();
 
     public Play(Game game){
         this.game = game;
@@ -33,10 +37,10 @@ public class Play extends JPanel {
         JTextField inputText;
         JPanel gridPanel;
         int random = randomNumber.generateNumber(); // generates a random number
-        System.out.println(random);
+
         // Setting up and Display the Score in the Current Game
-        playScore = new JLabel("Score: 0");
-        playScore.setFont(new Font("Arial", Font.BOLD, 20));
+        playScore = new JLabel("Score: " + scoreFiles.intScore("scores/current_score.txt") + "   Games: " + scoreFiles.intScore("scores/num_game.txt"));
+        playScore.setFont(new Font("Arial", Font.BOLD, 18));
         playScore.setForeground(Color.WHITE);
         playScore.setBorder(new EmptyBorder(20,0,0,0));
         playScore.setAlignmentX(CENTER_ALIGNMENT);
@@ -129,6 +133,8 @@ public class Play extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 int dialogResult = JOptionPane.showConfirmDialog(null, "Want to Stop the Game?", "Are you Sure", JOptionPane.YES_NO_OPTION);
                 if(dialogResult == 0) {
+                    // Insert the current score and number of games played to High Score when quiting the game
+                    scoreFiles.compareScore("scores/high_score.txt", "scores/current_score.txt", "scores/num_game.txt");
                     game.showView(new Menu(game));
                 }
             }
@@ -166,6 +172,10 @@ public class Play extends JPanel {
             contButton.setBorder(new EmptyBorder(-10,0,0,0));
             // Get the points(based on number of attempts) and update the score
             scoringSystem.scoreAttempt();
+            // Overwrite the txt score plus the current_score
+            scoreFiles.write("scores/current_score.txt", scoreFiles.intScore("scores/current_score.txt") + scoringSystem.getScore());
+            // Set how many games played continuously
+            scoreFiles.write("scores/num_game.txt", scoreFiles.intScore("scores/num_game.txt") + 1);
         } else {
             // Catch any possible error if the user didn't input a number
             try {

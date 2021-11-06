@@ -9,6 +9,9 @@ public class Menu extends JPanel {
     // Declaring the Game class for changing the scene
     final private Game game;
 
+    // Create an instance of ScoreFiles class to handle the .txt Files
+    ScoreFiles scoreFiles = new ScoreFiles();
+
     // Constructor of the Class
     public Menu(Game game){
         this.game = game;
@@ -40,8 +43,8 @@ public class Menu extends JPanel {
         add(scoreLabel);
 
         // Setting up and Display the High Score
-        scoreText = new JLabel("0");
-        scoreText.setFont(new Font("Arial", Font.BOLD, 30));
+        scoreText = new JLabel(scoreFiles.showScore("scores/high_score.txt") + " points for " + scoreFiles.showGames("scores/high_score.txt") + " games");
+        scoreText.setFont(new Font("Arial", Font.BOLD, 18));
         scoreText.setForeground(Color.WHITE);
         scoreText.setBorder(new EmptyBorder(10,0,0,0));
         scoreText.setAlignmentX(CENTER_ALIGNMENT);
@@ -67,6 +70,9 @@ public class Menu extends JPanel {
         jLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                // Set the data inside to zero
+                scoreFiles.write("scores/current_score.txt", 0);
+                scoreFiles.write("scores/num_game.txt", 0);
                 game.showView(new Play(game));
             }
         });
