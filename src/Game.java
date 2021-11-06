@@ -17,6 +17,7 @@ public class Game extends JFrame {
         this.setPreferredSize(new Dimension(350, 660)); // Dimension
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close the Application when clicking x
         this.add(viewPanel, BorderLayout.CENTER); // Add the JPanel in this frame
+        showView(new Menu(this));
         this.setVisible(true); // To view the window
         this.pack(); // To size the components(button, img) optimally
         this.setResizable(false); // To avoid resizing the window
