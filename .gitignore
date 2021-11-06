@@ -1,2 +1,7 @@
 # Untrack classes that are found in out folder
 out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
