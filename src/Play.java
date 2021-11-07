@@ -37,6 +37,7 @@ public class Play extends JPanel {
         JTextField inputText;
         JPanel gridPanel;
         int random = randomNumber.generateNumber(); // generates a random number
+        System.out.println(random);
 
         // Setting up and Display the Score in the Current Game
         playScore = new JLabel("Score: " + scoreFiles.intScore("scores/current_score.txt") + "   Games: " + scoreFiles.intScore("scores/num_game.txt"));
@@ -69,12 +70,14 @@ public class Play extends JPanel {
         // Setting up and Display the Status of the Inputted Text
         statusImage = new JLabel(new ImageIcon("res/input_number.png"));
         statusImage.setAlignmentX(CENTER_ALIGNMENT);
+        statusImage.setBorder(BorderFactory.createEmptyBorder(-10, 0, 15, 0));
         add(statusImage);
 
         // Setting up another JPanel to make the components place beside each other
         gridPanel = new JPanel();
+        gridPanel.setMaximumSize(new Dimension(260, 50));
+        gridPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         gridPanel.setLayout(new GridLayout(0, 2));
-        gridPanel.setBorder(BorderFactory.createEmptyBorder(12, 35, 12, 0));
         gridPanel.setOpaque(false);
 
         // Setting up and Display the Input JTextfield
@@ -106,6 +109,7 @@ public class Play extends JPanel {
         backButton = new JLabel(new ImageIcon("res/back_to_menu_button.png"));
         backButton.setAlignmentX(CENTER_ALIGNMENT);
         backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        backButton.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         linkMenu(backButton);
         add(backButton);
 
@@ -113,7 +117,7 @@ public class Play extends JPanel {
         enterButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                changeStatus(inputText, mysteryNumber, random, statusImage, gridPanel, continueButton);
+                changeStatus(inputText, mysteryNumber, random, statusImage, gridPanel, continueButton, backButton);
             }
         });
 
@@ -121,7 +125,7 @@ public class Play extends JPanel {
         inputText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                changeStatus(inputText, mysteryNumber, random, statusImage, gridPanel, continueButton);
+                changeStatus(inputText, mysteryNumber, random, statusImage, gridPanel, continueButton, backButton);
             }
         });
     }
@@ -158,7 +162,7 @@ public class Play extends JPanel {
     }
 
     // Method for Changing the Status Image
-    private void changeStatus(JTextField input, JLabel mysterynum, int randnum, JLabel status, JPanel gridPanel, JLabel contButton){
+    private void changeStatus(JTextField input, JLabel mysterynum, int randnum, JLabel status, JPanel gridPanel, JLabel contButton, JLabel backButton){
         // If the random number and the user input is correct
         if (String.valueOf(randnum).equals(input.getText())) {
             // Change the image of status
@@ -169,7 +173,9 @@ public class Play extends JPanel {
             gridPanel.setVisible(false);
             // Set and Show the continue button (for playing again)
             contButton.setVisible(true);
-            contButton.setBorder(new EmptyBorder(-10,0,0,0));
+            contButton.setBorder(new EmptyBorder(-15,0,0,0));
+            // Move the back button to top
+            backButton.setBorder(new EmptyBorder(-9,0,0,0));
             // Get the points(based on number of attempts) and update the score
             scoringSystem.scoreAttempt();
             // Overwrite the txt score plus the current_score
