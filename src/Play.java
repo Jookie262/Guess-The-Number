@@ -1,7 +1,10 @@
+import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class Play extends JPanel {
@@ -37,7 +40,6 @@ public class Play extends JPanel {
         JTextField inputText;
         JPanel gridPanel;
         int random = randomNumber.generateNumber(); // generates a random number
-        System.out.println(random);
 
         // Setting up and Display the Score in the Current Game
         playScore = new JLabel("Score: " + scoreFiles.intScore("scores/current_score.txt") + "   Games: " + scoreFiles.intScore("scores/num_game.txt"));
@@ -182,7 +184,11 @@ public class Play extends JPanel {
             scoreFiles.write("scores/current_score.txt", scoreFiles.intScore("scores/current_score.txt") + scoringSystem.getScore());
             // Set how many games played continuously
             scoreFiles.write("scores/num_game.txt", scoreFiles.intScore("scores/num_game.txt") + 1);
+            // If the input is correct, play the sound effect for correct
+            sound_effect("res/correct.wav");
         } else {
+            // If the input is wrong, play the sound effect for wrong
+            sound_effect("res/wrong.wav");
             // Catch any possible error if the user didn't input a number
             try {
                 // Convert the user input number (string) to int
@@ -207,5 +213,23 @@ public class Play extends JPanel {
         input.setText("");
         // Increase the number of attempts
         scoringSystem.incrementAttempt();
+
+    }
+
+    //// Method For Sound Effects Music
+    public void sound_effect(String soundName) {
+        try {
+            // Setting up the Audio for Background Music
+            AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(new File(soundName));
+            Clip clip2 = AudioSystem.getClip();
+            clip2.open(audioInputStream2);
+            // Adjust Sound
+            FloatControl gainControl =  (FloatControl) clip2.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-20.0f);
+            // Start the Audio
+            clip2.start();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }
