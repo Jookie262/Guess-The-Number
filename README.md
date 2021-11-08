@@ -63,6 +63,7 @@ If your new score is higher than the data in the txt file, the old score will be
 <p float="left">
 	<img src = "screenshot/main_menu.png" width="200">
 	<img src = "screenshot/play.png" width="200">
+  <img src = "screenshot/play_correct.png" width="200">
 </p>
 
 ## **Game Resources** 🎮
