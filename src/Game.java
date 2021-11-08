@@ -23,6 +23,7 @@ public class Game extends JFrame {
         showView(new Menu(this));
         this.setVisible(true); // To view the window
         this.pack(); // To size the components(button, img) optimally
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("res/icon.png")); // Change the icon
         this.setResizable(false); // To avoid resizing the window
         this.setLocationRelativeTo(null); // To set the window in the center
 
