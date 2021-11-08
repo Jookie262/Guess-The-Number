@@ -1,12 +1,12 @@
 <h1 align="center">
-    <img src="screenshot/logo_icon.jpg" width="80">
+    <img src="screenshot/logo_icon.jpg" width="100">
     <br>
     <b>Guess The Number</b>
     <br>
     <a href="https://github.com/Jookie262/GuessTheNumber/releases/download/v.1.0/GuessTheNumber_JAR.rar">
         <img src="https://img.shields.io/badge/Download-JAR%20-Orange?style=flat-square">
     </a>
-    <a href=https://github.com/Jookie262/GuessTheNumber/releases/download/v.1.0/GuessTheNumber_EXE.rar">
+    <a href="https://github.com/Jookie262/GuessTheNumber/releases/download/v.1.0/GuessTheNumber_EXE.rar">
         <img src="https://img.shields.io/badge/Download-EXE%20-Orange?style=flat-square">
     </a>
    
