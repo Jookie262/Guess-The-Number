@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="screenshot/logo_icon.jpg" width="150">
+    <img src="screenshot/logo_icon.jpg" width="120">
     <br>
     <b>Guess The Number</b>
     <br>
