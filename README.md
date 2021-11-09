@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="screenshot/logo_icon.jpg" width="100">
+    <img src="screenshot/logo_icon.jpg" width="150">
     <br>
     <b>Guess The Number</b>
     <br>
@@ -20,7 +20,6 @@ A Laboratory Exercise in Computer Programming 2 that implements the Try and Catc
  To run the program, the device must have:
  - Java JDK (Used JDK version 11.0.8)
  - IDE (Netbeans, Eclipse, Intellj)
- - Run the Main.java
 
 ## **Instruction of the Game** 📚
 1. Click the Play button
