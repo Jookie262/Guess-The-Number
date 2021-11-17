@@ -41,7 +41,7 @@ The score or points you gain is determined on the number of attempts you made pe
 | 3 points      | 4th attempts      |
 | 1 point       | 5th attempts and so on     | 
 
-## **Determining High Score** 💯
+## **Determining the High Score** 💯
 Take note that there are 3 variables in determining the High Score:
 - Score: The score is simply the number of points you gain depending on the number of attempts.
 - Attempts: Is the number of guesses you made in a single game to find out a number.
