@@ -36,10 +36,10 @@ The score or points you gain is determined on the number of attempts you made pe
 | Points        | Attempts           |
 | ------------- |:-------------:|
 | 10 points     | 1st attempt |
-| 9 points      | 2nd attempts      |
-| 5 points      | 3rd attempts      | 
-| 3 points      | 4th attempts      |
-| 1 point       | 5th attempts and so on     | 
+| 9 points      | 2nd attempt      |
+| 5 points      | 3rd attempt      | 
+| 3 points      | 4th attempt      |
+| 1 point       | 5th attempt and so on     | 
 
 ## **Determining the High Score** 💯
 Take note that there are 3 variables in determining the High Score:
