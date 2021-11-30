@@ -13,7 +13,7 @@
 </h1>
 
 <h4 align = "center">
-A Laboratory Exercise in Computer Programming 2 that implements the Try and Catch Functionality as well as File Handling. I make the activity more interesting by adding GUI (Java Swing) with musics and images.
+A Laboratory Exercise in Computer Programming 2 that implements the Try and Catch Functionality as well as File Handling. I make the activity more interesting by adding GUI (Java Swing) with sounds and images.
 </h4>
 
 ## **Run the Program** 📜
